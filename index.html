@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AL SIMRAN Restaurant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+  body { font-family: Arial, sans-serif; }
+
+  .navbar .nav-link{
+  color: #f5e6b3 !important;
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  margin: 0 8px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.navbar .nav-link::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #f9e07f, #d4af37, #a8861c);
+  transition: width 0.3s ease;
+}
+
+.navbar .nav-link:hover{
+  color: #ffd86b !important;
+  transform: translateY(-2px);
+}
+
+.navbar .nav-link:hover::after{
+  width: 100%;
+}
+
+  .logo-wrap{
+  display:flex;
+  align-items:center;
+}
+
+  .hero-slider{
+    height: 90vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-slide{
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .hero-slide.active{
+    opacity: 1;
+  }
+
+  .hero-content{
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    background: rgba(0,0,0,0.45);
+  }
+
+  .hero-content h1{
+    font-size: 3.5rem;
+    font-weight: bold;
+  }
+  .hero-title{
+  font-size: 4rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 8px 25px rgba(0,0,0,0.6);
+}
+
+.hero-title span{
+  background: linear-gradient(90deg,#f9e07f,#d4af37,#a8861c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-tagline{
+  margin-top: 12px;
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  color: #f5e6b3;
+  text-transform: uppercase;
+}
+
+  .menu-card {
+  height: 220px;
+  border-radius: 15px;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.menu-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
+
+.menu-card h3 {
+  position: relative;
+  z-index: 2;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.menu-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+</style>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <div class="logo-wrap">
+<svg width="220" height="70" viewBox="0 0 220 70" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f9e07f"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#a8861c"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <circle cx="35" cy="35" r="28" fill="#111" stroke="url(#goldGrad)" stroke-width="3"/>
+  <text x="35" y="43" text-anchor="middle"
+        font-size="26" font-weight="800"
+        fill="url(#goldGrad)" filter="url(#glow)"
+        style="font-family: 'Georgia', serif;">SS</text>
+
+  <text x="80" y="32" font-size="22" font-weight="700"
+        fill="url(#goldGrad)" filter="url(#glow)"
+        style="font-family: 'Playfair Display', serif;">
+    AL SIMRAN
+  </text>
+  <text x="80" y="52" font-size="11" fill="#ccc"
+        style="letter-spacing:2px;">
+    ROYAL FOOD
+  </text>
+</svg>
+</div>
+
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="nav" class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="#offers">Offers</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="hero-slider" id="home">
+    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1400&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1400&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=1400&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1400&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1400&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1400&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1400&q=80')"></div>
+
+  <div class="hero-content">
+    <div>
+      <h1 class="hero-title">Welcome to <span>AL SIMRAN</span></h1>
+      <p class="hero-tagline">Royal Taste • Authentic Flavours • Crafted with Love</p>
+    </div>
+  </div>
+
+</section>
+
+<section id="menu" class="py-5 text-white" style="
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+  url('https://images.unsplash.com/photo-1504674900247-0877df9cc836') center/cover no-repeat;">
+  <div class="container">
+    <h2 class="text-center mb-4" style="font-size:42px; font-weight:700;">Menu</h2>
+
+    <div class="row g-4">
+
+      <!-- Veg -->
+      <div class="col-md-4">
+        <div class="menu-card" style="background:url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe') center/cover;"
+             onclick="toggleMenu('veg')">
+          <h3>Veg Menu</h3>
+        </div>
+        <div id="veg" class="mt-2 d-none">
+          <ul class="list-group">
+            <li class="list-group-item">Paneer Butter Masala – ₹180</li>
+            <li class="list-group-item">Veg Biryani – ₹150</li>
+            <li class="list-group-item">Mix Veg – ₹120</li>
+            <li class="list-group-item">Dal Fry – ₹100</li>
+            <li class="list-group-item">Roti / Naan – ₹20</li>
+            <li class="list-group-item">Paneer Tikka – ₹290</li>
+            <li class="list-group-item">Paneer Chatpata Kebab – ₹290</li>
+            <li class="list-group-item">Paneer Angara Kebab – ₹320</li>
+            <li class="list-group-item">Paneer Schezwan Cheese Tikka – ₹320</li>
+            <li class="list-group-item">Paneer Rozali Kebab – ₹320</li>
+            <li class="list-group-item">Paneer Cheese Dhaniya Tikka – ₹320</li>
+            <li class="list-group-item">Paneer Amritsari Kebab – ₹320</li>
+            <li class="list-group-item">Paneer Sajoi Kebab – ₹320</li>
+            <li class="list-group-item">Paneer Hilton Kebab – ₹320</li>
+            <li class="list-group-item">Tandoori Mushroom – ₹320</li>
+            <li class="list-group-item">Mushroom Multani Tikka – ₹320</li>
+            <li class="list-group-item">Tandoor Soya Chaap – ₹320</li>
+            <li class="list-group-item">Banjara Soya Chaap – ₹320</li>
+            <li class="list-group-item">Malai Soya Chaap – ₹320</li>
+            <li class="list-group-item">Veg Platter – ₹829</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Non Veg -->
+      <div class="col-md-4">
+        <div class="menu-card" style="background:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') center/cover;"
+             onclick="toggleMenu('nonveg')">
+          <h3>Non-Veg Menu</h3>
+        </div>
+        <div id="nonveg" class="mt-2 d-none">
+          <ul class="list-group">
+            <li class="list-group-item">Chicken Biryani – ₹220</li>
+            <li class="list-group-item">Mutton Biryani – ₹280</li>
+            <li class="list-group-item">Chicken Curry – ₹200</li>
+            <li class="list-group-item">Tandoori Chicken – ₹260</li>
+            <li class="list-group-item">Egg Curry – ₹120</li>
+            <li class="list-group-item">Chicken Raan – ₹850</li>
+            <li class="list-group-item">Damkash Tangdi – ₹380</li>
+            <li class="list-group-item">Tandoor Chicken (Full/Half) – ₹429 / ₹299</li>
+            <li class="list-group-item">Shahi Tandoor Chicken (Full/Half) – ₹479 / ₹329</li>
+            <li class="list-group-item">Chicken Rozali Kebab – ₹379</li>
+            <li class="list-group-item">Chicken Dilkhush Kebab – ₹379</li>
+            <li class="list-group-item">Chicken Tangdi Kebab – ₹349</li>
+            <li class="list-group-item">Chicken Singapori Kebab – ₹379</li>
+            <li class="list-group-item">Chicken Angara Kebab – ₹329</li>
+            <li class="list-group-item">Chicken Banjara Kebab – ₹329</li>
+            <li class="list-group-item">Chicken Mastani Kebab – ₹349</li>
+            <li class="list-group-item">Chicken Kalimiri Kebab – ₹329</li>
+            <li class="list-group-item">Chicken Irani Kebab – ₹379</li>
+            <li class="list-group-item">Chicken Malai Kebab – ₹329</li>
+            <li class="list-group-item">Chicken Reshmi Kebab – ₹329</li>
+            <li class="list-group-item">Tandoor Chicken Lollypop – ₹329</li>
+            <li class="list-group-item">Mutton Seekh Kebab – ₹379</li>
+            <li class="list-group-item">Mutton Gilafi Seekh Kebab – ₹399</li>
+            <li class="list-group-item">Non-Veg Platter – ₹1229</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Fish -->
+      <div class="col-md-4">
+        <div class="menu-card" style="background:url('https://images.unsplash.com/photo-1553621042-f6e147245754') center/cover;"
+             onclick="toggleMenu('fish')">
+          <h3>Fish Menu</h3>
+        </div>
+        <div id="fish" class="mt-2 d-none">
+          <ul class="list-group">
+            <li class="list-group-item">Fish Fry – ₹200</li>
+            <li class="list-group-item">Fish Curry – ₹220</li>
+            <li class="list-group-item">Grilled Fish – ₹250</li>
+            <li class="list-group-item">Fish Biryani – ₹230</li>
+            <li class="list-group-item">Fish Tikka – ₹260</li>
+            <li class="list-group-item">Tandoori Fish – ₹280</li>
+            <li class="list-group-item">Fish Kebab – ₹240</li>
+            <li class="list-group-item">Chilli Fish – ₹230</li>
+            <li class="list-group-item">Pepper Fish Fry – ₹250</li>
+            <li class="list-group-item">Fish Masala – ₹240</li>
+            <li class="list-group-item">Fish Manchurian – ₹230</li>
+            <li class="list-group-item">Butter Garlic Fish – ₹270</li>
+            <li class="list-group-item">Fish 65 – ₹220</li>
+            <li class="list-group-item">Fish Platter – ₹480</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Special Offers -->
+<section id="offers" class="py-5 text-white" style="
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+  url('https://images.unsplash.com/photo-1504674900247-0877df9cc836') center/cover no-repeat;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;">
+  <div class="container text-center">
+    <div class="p-5 rounded" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(6px);">
+      <h2 class="display-5 fw-bold">Special Offers</h2>
+      <p class="fs-4 mt-3">Flat 20% OFF on Family Pack Biryani</p>
+      <p class="fs-5">Every Friday – Limited Time Only!</p>
+    </div>
+  </div>
+</section>
+
+<!-- About Us -->
+<section id="about" class="py-5 text-white" style="
+  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+  url('https://images.unsplash.com/photo-1551218808-94e220e084d2') center/cover no-repeat;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;">
+  <div class="container text-center">
+    <div class="p-5 rounded" style="background: rgba(0,0,0,0.4);">
+      <h2 class="display-5 fw-bold">About Us</h2>
+      <p class="fs-5 mt-3">
+        Al Aziz Food Restaurant serves fresh, hygienic and delicious food.  
+        Our goal is to give you the best taste at an affordable price.
+      </p>
+      <p class="fs-6">
+        We are known for our Biryani, Non-Veg dishes, Fish items and Veg meals –  
+        cooked with love and quality ingredients.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="
+  background: linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.4)),
+  url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4') center/cover no-repeat;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  color: #fff;
+">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <!-- LEFT: Contact Us -->
+      <div class="col-md-6">
+        <h2 style="font-size:42px; font-weight:700;">Contact Us</h2>
+
+        <p class="fs-5 mt-3">
+          📍 <strong>Address:</strong><br>
+          Main Market Road, Near City Center,<br>
+          Hyderabad, India
+        </p>
+
+        <p class="fs-5 mt-2">
+          📧 <strong>Email:</strong><br>
+          <a href="mailto:s.shams02649@gmail.com" class="text-warning text-decoration-none">
+            s.shams02649@gmail.com
+          </a>
+        </p>
+
+        <p class="fs-5 mt-2">
+          <i class="fa-brands fa-instagram" style="color:#E1306C; font-size:22px;"></i>
+            <strong> Instagram:</strong><br>
+            <a href="https://www.instagram.com/s.shams_06233" target="_blank"
+            class="text-warning text-decoration-none">
+            @s.shams_06233
+            </a>
+        </p>
+
+        <a href="https://wa.me/917294035376" target="_blank"
+           class="btn btn-success btn-lg mt-3 px-4">
+          Chat on WhatsApp
+        </a>
+      </div>
+
+      <!-- RIGHT: Customer Review -->
+      <div class="col-md-6">
+        <form action="mailto:s.shams02649@gmail.com"
+            method="post"
+            enctype="text/plain"
+            onsubmit="setTimeout(() => this.reset(), 500);"
+            class="p-4 rounded"
+            style="background:rgba(0,0,0,0.55);">
+          <h3 class="mb-3 text-center">Customer Review</h3>
+
+          <div class="mb-2 text-center">⭐⭐⭐⭐⭐</div>
+
+          <input type="text" name="Name" class="form-control mb-2"
+                 placeholder="Your Name" required>
+
+          <textarea name="Review" class="form-control mb-3" rows="3"
+                    placeholder="Write your review..." required></textarea>
+
+          <button type="submit" class="btn btn-warning w-100">
+            Submit Review
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="py-3 text-center bg-dark text-white">
+  © Shams Khan – 241FJ02026
+</footer>
+
+<script>
+  let slides = document.querySelectorAll('.hero-slide');
+  let index = 0;
+
+  setInterval(() => {
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+  }, 3000); // 3 seconds
+</script>
+<script>
+  function toggleMenu(id){
+    let el = document.getElementById(id);
+    el.classList.toggle('d-none');
+  }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
