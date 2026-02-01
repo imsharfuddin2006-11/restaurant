@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Veg Menu | AL SIMRAN</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    color:#fff;
+
+    background-image: url("https://i.pinimg.com/1200x/7d/d9/6f/7dd96fbef840e0bae5bd96842a392089.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h1{
+    text-align:center;
+    padding:20px;
+    color:#ffcc00;
+}
+
+/* MENU GRID */
+.menu{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:20px;
+    background: transparent;
+}
+
+/* CARD */
+.card{
+    background: rgba(0,0,0,0.35); /* transparent glass effect */
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.4);
+    backdrop-filter: blur(5px);
+}
+
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+
+/* INFO */
+.info{
+    padding:15px;
+    background:linear-gradient(to top,rgba(0,0,0,.8),rgba(0,0,0,.2));
+}
+
+.info h3{
+    margin:0;
+    font-size:18px;
+}
+
+.price{
+    color:#ffcc00;
+    margin:6px 0;
+    font-weight:bold;
+}
+
+/* BUTTONS */
+.buttons{
+    display:flex;
+    gap:10px;
+    margin-top:8px;
+}
+
+button{
+    flex:1;
+    padding:8px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.add{
+    background:#ff9800;
+    color:#fff;
+}
+
+.order{
+    background:#25D366;
+    color:#fff;
+}
+
+/* CART */
+.cart{
+    background: rgba(0,0,0,0.5);
+    padding:20px;
+    backdrop-filter: blur(6px);
+}
+
+.cart h2{
+    margin-top:0;
+    color:#ffcc00;
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+}
+
+.cart button{
+    width:100%;
+    margin-top:10px;
+    background:#25D366;
+}
+.glass-title{
+    display:inline-block;
+    padding:12px 30px;
+    margin:20px auto;
+    border-radius:15px;
+
+    /* GLASS EFFECT */
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    /* GLASS BORDER */
+    border:1px solid rgba(255,255,255,0.35);
+
+    color:#ffcc00;
+    box-shadow:0 8px 25px rgba(0,0,0,0.3);
+}
+.cart-icon{
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 50px;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+#cart-count{
+  background: red;
+  color: white;
+  font-size: 14px;
+  padding: 2px 7px;
+  border-radius: 50%;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+</style>
+</head>
+
+<body>
+
+    <!-- CART ICON -->
+    <div class="cart-icon" onclick="goToCart()">
+     🛒
+    <span id="cart-count">0</span>
+    </div>
+
+<h1 class="glass-title">🥦 Veg Menu</h1>
+
+<div class="menu">
+
+<!-- 1 -->
+<div class="card">
+<img src="https://i.pinimg.com/1200x/75/25/c2/7525c28b815e93b8f4ad4a3bb889090e.jpg">
+<div class="info">
+<h3>Paneer Butter Masala</h3>
+<p class="price">₹180</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Paneer Butter Masala',180)">Add to Cart</button>
+<button class="order" onclick="orderNow('Paneer Butter Masala',180)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 2 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/e1/e7/f8/e1e7f84300b07002c556a98b8e44c7f6.jpg">
+<div class="info">
+<h3>Veg Biryani</h3>
+<p class="price">₹150</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Veg Biryani',150)">Add to Cart</button>
+<button class="order" onclick="orderNow('Veg Biryani',150)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 3 -->
+<div class="card">
+<img src="https://i.pinimg.com/1200x/24/81/3c/24813c88578517aa67abd5331822257d.jpg">
+<div class="info">
+<h3>Mix Veg</h3>
+<p class="price">₹250</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Mix Veg',250)">Add to Cart</button>
+<button class="order" onclick="orderNow('Mix Veg',250)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 4 -->
+<div class="card">
+<img src="https://i.pinimg.com/1200x/3e/f4/73/3ef473f8e09ef12ab94749b2e2f3a7bd.jpg">
+<div class="info">
+<h3>Dal Fry</h3>
+<p class="price">₹130</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Dal Fry',130)">Add to Cart</button>
+<button class="order" onclick="orderNow('Dal Fry',130)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 5 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/59/81/85/5981859da80c1d8580654daf371d0ffe.jpg">
+<div class="info">
+<h3>Paneer Tikka</h3>
+<p class="price">₹290</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Paneer Tikka',290)">Add to Cart</button>
+<button class="order" onclick="orderNow('Paneer Tikka',290)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 6 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/18/c3/e9/18c3e9d187b3d87b37efee40832df96b.jpg">
+<div class="info">
+<h3>Paneer Angara Kebab</h3>
+<p class="price">₹320</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Paneer Angara Kabab',320)">Add to Cart</button>
+<button class="order" onclick="orderNow('Paneer Angara Kabab',320)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 7 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/cd/20/d3/cd20d3e5d6c2fa7735c9eee0352b8b57.jpg">
+<div class="info">
+<h3>Paneer Rozali Kebab</h3>
+<p class="price">₹320</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Paneer Rozali Kebab',320)">Add to Cart</button>
+<button class="order" onclick="orderNow('Paneer Rozali Kebab',320)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 8 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/74/55/c4/7455c45c5b33373de7987c32b20a4680.jpg">
+<div class="info">
+<h3>Tandoori Mushroom</h3>
+<p class="price">₹320</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Tandoori Mashroom',320)">Add to Cart</button>
+<button class="order" onclick="orderNow('Tandoori Mashroom',320)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 9 -->
+<div class="card">
+<img src="https://i.pinimg.com/1200x/af/1e/a0/af1ea0c343a265c0ad02c5d30300096c.jpg">
+<div class="info">
+<h3>Veg Roll</h3>
+<p class="price">₹120</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Veg Roll',120)">Add to Cart</button>
+<button class="order" onclick="orderNow('Veg Roll',120)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 10 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/de/c8/d7/dec8d7e3205a346913f86728f5f4afc8.jpg">
+<div class="info">
+<h3>Veg Platter</h3>
+<p class="price">₹829</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Veg Platter',829)">Add to Cart</button>
+<button class="order" onclick="orderNow('Veg Platter',829)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 11 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/6c/f5/f9/6cf5f9fdcfbdd65317f4f68b87788a37.jpg">
+<div class="info">
+<h3>Mutter Paneer</h3>
+<div class="price">₹230</div>
+<div class="buttons">
+<button class="add" onclick="addToCart('Mutter Paneer',230)">Add to Cart</button>
+<button class="order" onclick="orderNow('Mutter Paneer',230)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 12 -->
+<div class="card">
+<img src="https://i.pinimg.com/1200x/8b/9f/70/8b9f702f1a32a666ce52e57b68e14fac.jpg">
+<div class="info">
+<h3>Shahi Paneer</h3>
+<div class="price">₹300</div>
+<div class="buttons">
+<button class="add" onclick="addToCart('Shahi Paneer',300)">Add to Cart</button>
+<button class="order" onclick="orderNow('Shahi Paneer',300)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 13 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/47/26/f2/4726f22fefea2602b164b802c642c664.jpg">
+<div class="info">
+<h3>Cheese Chilli</h3>
+<div class="price">₹180</div>
+<div class="buttons">
+<button class="add" onclick="addToCart('Cheese Chilli',180)">Add to Cart</button>
+<button class="order" onclick="orderNow('Cheese Chilli',180)">Order</button>
+</div>
+</div>
+</div>
+
+</div>
+
+<script>
+    const CART_KEY = "cart";
+
+    function getCart() {
+    return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+    }
+
+    function saveCart(cart) {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    }
+
+    function updateCartCount() {
+    let cart = getCart();
+    let badge = document.getElementById("cart-count");
+    if (!badge) return;
+
+    if (cart.length > 0) {
+        badge.innerText = cart.length;
+        badge.style.display = "inline-block";
+    } else {
+        badge.innerText = "";
+        badge.style.display = "none";
+    }
+    }
+
+    function addToCart(name, price) {
+    let cart = getCart();
+    cart.push({ name, price });
+    saveCart(cart);
+    updateCartCount();
+    alert(name + " Added to Cart");
+    }
+
+    function goToCart() {
+    window.location.href = "cart.html";
+    }
+
+    function orderNow(name, price) {
+    let msg = `Hello AL SIMRAN Restaurant,%0AOrder:%0A${name} - ₹${price}`;
+    window.open("https://wa.me/917294035376?text=" + msg, "_blank");
+    }
+
+    updateCartCount();
+</script>
+
+</body>
+</html>

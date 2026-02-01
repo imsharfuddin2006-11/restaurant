@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Order Success</title>
+
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Arial;
+  background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+             url("SUCCESS_BG_IMAGE");
+  background-size:cover;
+  color:white;
+}
+
+.box{
+  text-align:center;
+  background:rgba(0,0,0,.5);
+  padding:30px;
+  border-radius:20px;
+}
+a{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 20px;
+  background:#2ecc71;
+  color:black;
+  text-decoration:none;
+  border-radius:10px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h1>✅ Order Placed Successfully!</h1>
+  <p>Thank you for ordering from</p>
+  <h2>AL SIMRAN Restaurant 🍽️</h2>
+  <p>We will contact you shortly.</p>
+
+  <a href="index.html">Back to Home</a>
+</div>
+
+<script>
+localStorage.removeItem("cart");
+</script>
+
+</body>
+</html>

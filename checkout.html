@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Checkout | AL SIMRAN</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* BODY – BACKGROUND SLIDE READY */
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  transition: background-image 1s ease-in-out;
+}
+
+/* DARK OVERLAY FOR READABILITY */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  z-index:-1;
+}
+
+/* CHECKOUT BOX (GLASS) */
+.checkout-box{
+  width:400px;
+  padding:25px;
+  border-radius:20px;
+  background:rgba(0,0,0,0.45);
+  backdrop-filter: blur(14px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.6);
+}
+
+.checkout-box h2{
+  text-align:center;
+  color:#f1c40f;
+  margin-bottom:15px;
+}
+
+/* INPUTS */
+input, textarea{
+  width:100%;
+  padding:10px;
+  margin:6px 0 12px;
+  border:none;
+  border-radius:8px;
+  outline:none;
+}
+
+textarea{
+  resize:none;
+}
+
+/* ORDER SUMMARY */
+.summary{
+  background:rgba(0,0,0,0.35);
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:12px;
+  font-size:14px;
+}
+
+/* UPI BOX */
+.upi{
+  background:rgba(255,255,255,0.1);
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:15px;
+  text-align:center;
+}
+.upi p{
+  margin:5px 0;
+}
+
+/* BUTTON */
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  background:#25D366;
+  color:black;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+button:hover{
+  background:#1ebe5d;
+}
+</style>
+</head>
+
+<body>
+
+<div class="checkout-box">
+  <h2>Checkout</h2>
+
+  <!-- CUSTOMER DETAILS -->
+  <input id="name" type="text" placeholder="Your Name">
+  <input id="mobile" type="text" placeholder="Mobile Number">
+  <textarea id="address" rows="3" placeholder="Delivery Address"></textarea>
+
+  <!-- ORDER SUMMARY -->
+  <div class="summary" id="orderSummary">
+    Loading order...
+  </div>
+
+  <!-- UPI INFO -->
+  <div class="upi">
+    <strong>Pay via UPI</strong>
+    <p>Scan QR & complete payment</p>
+    <p><b>UPI ID: al-simran@upi</b></p>
+  </div>
+
+  <!-- PLACE ORDER -->
+  <button onclick="placeOrder()">Place Order on WhatsApp</button>
+</div>
+
+<script>
+/* 🔥 BACKGROUND SLIDESHOW (REPLACE IMAGES) */
+const bgImages = [
+  "https://i.pinimg.com/736x/02/3c/97/023c978529252da956e4ef3412735956.jpg",
+  "https://i.pinimg.com/736x/d5/2f/e9/d52fe9b7c0247e02a85c78c8c6d02209.jpg",
+  "https://i.pinimg.com/736x/51/3a/58/513a580ea4d8664fd687d5d801fc5b76.jpg",
+  "https://i.pinimg.com/736x/fc/0a/24/fc0a24dba1f9a43d93768ad30e4608e7.jpg",
+  "https://i.pinimg.com/736x/db/8f/2d/db8f2dbdc80f27cb4a8cb06755c9d738.jpg",
+  "https://i.pinimg.com/736x/bd/5f/95/bd5f95daf0b0c44fcd8b84f5af543b43.jpg"
+];
+
+let bgIndex = 0;
+function changeBg(){
+  document.body.style.backgroundImage =
+    "url('" + bgImages[bgIndex] + "')";
+  bgIndex = (bgIndex + 1) % bgImages.length;
+}
+changeBg();
+setInterval(changeBg, 2000);
+
+/* 🛒 LOAD CART */
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+/* SHOW ORDER SUMMARY */
+function showSummary(){
+  let html="";
+  let total=0;
+
+  if(cart.length === 0){
+    document.getElementById("orderSummary").innerText = "Cart is empty";
+    return;
+  }
+
+  cart.forEach(item=>{
+    let qty = item.qty || 1;
+    html += `${item.name} x${qty} - ₹${item.price * qty}<br>`;
+    total += item.price * qty;
+  });
+
+  html += `<hr>Total: ₹${total}`;
+  document.getElementById("orderSummary").innerHTML = html;
+}
+
+/* PLACE ORDER */
+function placeOrder(){
+  if(cart.length === 0){
+    alert("Cart is empty");
+    return;
+  }
+
+  let n = name.value;
+  let m = mobile.value;
+  let a = address.value;
+
+  if(n==="" || m==="" || a===""){
+    alert("Please fill all details");
+    return;
+  }
+
+  let msg = "Hello AL SIMRAN Restaurant,%0A%0A";
+  msg += "Name: " + n + "%0A";
+  msg += "Mobile: " + m + "%0A";
+  msg += "Address: " + a + "%0A%0AOrder:%0A";
+
+  cart.forEach(item=>{
+    let qty = item.qty || 1;
+    msg += `${item.name} x${qty} - ₹${item.price * qty}%0A`;
+  });
+
+  window.open("https://wa.me/917294035367?text=" + msg,"_blank");
+
+  setTimeout(()=>{
+    window.location.href="success.html";
+  },1000);
+}
+
+showSummary();
+</script>
+
+</body>
+</html>

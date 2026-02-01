@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Non-Veg Menu | AL SIMRAN</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    color:#fff;
+
+    background-image: url("https://i.pinimg.com/1200x/58/41/eb/5841eb25d1ec95a39ab115aadd322c2a.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h1{
+    text-align:center;
+    padding:20px;
+    color:#ffcc00;
+}
+
+/* MENU GRID */
+.menu{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:20px;
+    background: transparent;
+}
+
+/* CARD */
+.card{
+    background: rgba(0,0,0,0.35); /* transparent glass effect */
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.4);
+    backdrop-filter: blur(5px);
+}
+
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+
+/* INFO */
+.info{
+    padding:15px;
+    background:linear-gradient(to top,rgba(0,0,0,.8),rgba(0,0,0,.2));
+}
+
+.info h3{
+    margin:0;
+    font-size:18px;
+}
+
+.price{
+    color:#ffcc00;
+    margin:6px 0;
+    font-weight:bold;
+}
+
+/* BUTTONS */
+.buttons{
+    display:flex;
+    gap:10px;
+    margin-top:8px;
+}
+
+button{
+    flex:1;
+    padding:8px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.add{
+    background:#ff9800;
+    color:#fff;
+}
+
+.order{
+    background:#25D366;
+    color:#fff;
+}
+
+/* CART */
+.cart{
+    background: rgba(0,0,0,0.5);
+    padding:20px;
+    backdrop-filter: blur(6px);
+}
+
+.cart h2{
+    margin-top:0;
+    color:#ffcc00;
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+}
+
+.cart button{
+    width:100%;
+    margin-top:10px;
+    background:#25D366;
+}
+.glass-title{
+    display:inline-block;
+    padding:12px 30px;
+    margin:20px auto;
+    border-radius:15px;
+
+    /* GLASS EFFECT */
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    /* GLASS BORDER */
+    border:1px solid rgba(255,255,255,0.35);
+
+    color:#ffcc00;
+    box-shadow:0 8px 25px rgba(0,0,0,0.3);
+}
+.cart-icon{
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 50px;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+#cart-count{
+  background: red;
+  color: white;
+  font-size: 14px;
+  padding: 2px 7px;
+  border-radius: 50%;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+</style>
+</head>
+
+<body>
+    <!-- CART ICON -->
+    <div class="cart-icon" onclick="goToCart()">
+        🛒
+    <span id="cart-count">0</span>
+    </div>
+
+
+<h1 class="glass-title">🍗 Non-Veg Menu</h1>
+
+<div class="menu">
+
+<!-- 1 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/be/9c/50/be9c5060a8bf1bfbaf2afb514808bf4f.jpg">
+<div class="info">
+<h3>Chicken Biryani</h3>
+<p class="price">₹220</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Chicken Biryani',220)">Add to Cart</button>
+<button class="order" onclick="orderNow('Chicken Biryani',220)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 2 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/5a/94/6d/5a946d6a52e46007a5db33fced34dd18.jpg">
+<div class="info">
+<h3>Mutton Biryani</h3>
+<p class="price">₹280</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Mutton Biryani',280)">Add to Cart</button>
+<button class="order" onclick="orderNow('Mutton Biryani',280)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 3 -->
+<div class="card">
+<img src="https://i.pinimg.com/1200x/8c/23/f3/8c23f3cabfaf3aaf1e18ee27edfde5ab.jpg">
+<div class="info">
+<h3>Chicken Curry</h3>
+<p class="price">₹200</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Chicken Curry',200)">Add to Cart</button>
+<button class="order" onclick="orderNow('Chicken Curry',200)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 4 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/3c/67/3c/3c673c303e913c3f9d9450d056f1cf00.jpg">
+<div class="info">
+<h3>Tandoori Chicken</h3>
+<p class="price">₹260</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Tandoori Chicken',260)">Add to Cart</button>
+<button class="order" onclick="orderNow('Tandoori Chicken',260)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 5 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/81/d1/43/81d1439c724c1f4e8814646d9de494c7.jpg">
+<div class="info">
+<h3>Egg Curry</h3>
+<p class="price">₹120</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Egg Curry',120)">Add to Cart</button>
+<button class="order" onclick="orderNow('Egg Curry',120)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 6 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/57/ec/c4/57ecc4d60a8ea2dad5e05ad357c956a2.jpg">
+<div class="info">
+<h3>Chicken Raan</h3>
+<p class="price">₹850</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Chicken Raan',850)">Add to Cart</button>
+<button class="order" onclick="orderNow('Chicken Raan',850)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 7 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/9d/8d/aa/9d8daab93d92ad9f3aabe5988aca4b0b.jpg">
+<div class="info">
+<h3>Mutton Yekhni Polau</h3>
+<p class="price">₹380</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Mutton Yekhni Polau',380)">Add to Cart</button>
+<button class="order" onclick="orderNow('Mutton Yekhni Polau',380)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 8 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/3f/93/b8/3f93b8256c9d134ef3a3a09adb01dd56.jpg">
+<div class="info">
+<h3>Tandoor Chicken (Full)</h3>
+<p class="price">₹429</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Tandoor Chicken Full',429)">Add to Cart</button>
+<button class="order" onclick="orderNow('Tandoor Chicken Full',429)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 9 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/cb/d3/d4/cbd3d4ef7f09b03b9b719c2bac2448e9.jpg">
+<div class="info">
+<h3>Tandoor Chicken (Half)</h3>
+<p class="price">₹299</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Tandoor Chicken Half',299)">Add to Cart</button>
+<button class="order" onclick="orderNow('Tandoor Chicken Half',299)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 10 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/84/eb/ad/84ebad37ca4cd3a70dcc9f0f007cff4f.jpg">
+<div class="info">
+<h3>Chicken Rozali Kebab</h3>
+<p class="price">₹379</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Chicken Rozali Kebab',379)">Add to Cart</button>
+<button class="order" onclick="orderNow('Chicken Rozali Kebab',379)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 11 -->
+<div class="card">
+<img src="https://i.pinimg.com/1200x/6b/20/3e/6b203eac916deb02cdee28cb5c68b060.jpg">
+<div class="info">
+<h3>Chicken Dilkhush Kebab</h3>
+<p class="price">₹379</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Chicken Dilkhush Kebab',379)">Add to Cart</button>
+<button class="order" onclick="orderNow('Chicken Dilkhush Kebab',379)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 12 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/b7/da/de/b7dadeb9270b80b190d037586c79e33b.jpg">
+<div class="info">
+<h3>Kebab</h3>
+<p class="price">₹349</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Kebab',349)">Add to Cart</button>
+<button class="order" onclick="orderNow('Kebab',349)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 13 -->
+<div class="card">
+<img src="https://i.pinimg.com/1200x/e1/3c/3d/e13c3dfe3d320ec250ccf3c91ce1420c.jpg">
+<div class="info">
+<h3>Chicken Singapori Kebab</h3>
+<p class="price">₹379</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Chicken Singapori Kebab',379)">Add to Cart</button>
+<button class="order" onclick="orderNow('Chicken Singapori Kebab',379)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 14 -->
+<div class="card">
+<img src="https://i.pinimg.com/1200x/5f/9d/98/5f9d98321322dd705945d511e2983f47.jpg">
+<div class="info">
+<h3>Chicken Angara Kebab</h3>
+<p class="price">₹329</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Chicken Angara Kebab',329)">Add to Cart</button>
+<button class="order" onclick="orderNow('Chicken Angara Kebab',329)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 15 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/b5/86/ff/b586ffb16310ae4633949eb829385928.jpg">
+<div class="info">
+<h3>Chicken Banjara Kebab</h3>
+<p class="price">₹329</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Chicken Banjara Kebab',329)">Add to Cart</button>
+<button class="order" onclick="orderNow('Chicken Banjara Kebab',329)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 16 -->
+<div class="card">
+<img src="https://i.pinimg.com/1200x/62/35/2c/62352c676af2f474a93d43373ef35260.jpg">
+<div class="info">
+<h3>Dam Briyani</h3>
+<p class="price">₹180</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Dam Briyani',180)">Add to Cart</button>
+<button class="order" onclick="orderNow('Dam Briyani',180)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 17 -->
+<div class="card">
+<img src="https://i.pinimg.com/1200x/28/05/8f/28058f64e78f1c617a9c06f1f941ecc9.jpg">
+<div class="info">
+<h3>Chicken Thali (Half)</h3>
+<p class="price">₹329</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Chicken Thali (Half)',420)">Add to Cart</button>
+<button class="order" onclick="orderNow('Chicken Thali (Half)',420)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 18 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/9e/89/e7/9e89e703609420239f465b0d5a2c060d.jpg">
+<div class="info">
+<h3>Chicken Irani Kebab</h3>
+<p class="price">₹379</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Chicken Irani Kebab',379)">Add to Cart</button>
+<button class="order" onclick="orderNow('Chicken Irani Kebab',379)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 19 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/08/2c/2b/082c2be87e399dc3a215437c91bf33f7.jpg">
+<div class="info">
+<h3>Chicken Malai Kebab</h3>
+<p class="price">₹329</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Chicken Malai Kebab',329)">Add to Cart</button>
+<button class="order" onclick="orderNow('Chicken Malai Kebab',329)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 20 -->
+<div class="card">
+<img src="https://i.pinimg.com/1200x/86/51/6b/86516b2558d3ece030b17ff050f2ebb1.jpg">
+<div class="info">
+<h3>Chicken Reshmi Kebab</h3>
+<p class="price">₹329</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Chicken Reshmi Kebab',329)">Add to Cart</button>
+<button class="order" onclick="orderNow('Chicken Reshmi Kebab',329)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 21 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/5d/ae/90/5dae90054d0550287740bf89e2a54f8d.jpg">
+<div class="info">
+<h3>Chicken Lollipop</h3>
+<p class="price">₹329</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Chicken Lollipop',329)">Add to Cart</button>
+<button class="order" onclick="orderNow('Chicken Lollipop',329)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 22 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/2e/f1/90/2ef190d59d0138b26ccc99cc01772e11.jpg">
+<div class="info">
+<h3>Mutton Seekh Kebab</h3>
+<p class="price">₹379</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Mutton Seekh Kebab',379)">Add to Cart</button>
+<button class="order" onclick="orderNow('Mutton Seekh Kebab',379)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 23 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/bf/af/dc/bfafdceecc88647fb031c75ff1e881e1.jpg">
+<div class="info">
+<h3>Mutton Gilafi Seekh Kebab</h3>
+<p class="price">₹399</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Mutton Gilafi Seekh Kebab',399)">Add to Cart</button>
+<button class="order" onclick="orderNow('Mutton Gilafi Seekh Kebab',399)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 24 -->
+<div class="card">
+<img src="https://i.pinimg.com/736x/b7/b6/59/b7b65955e61a370c9c546ac004577992.jpg">
+<div class="info">
+<h3>Non-Veg Platter</h3>
+<p class="price">₹1229</p>
+<div class="buttons">
+<button class="add" onclick="addToCart('Non Veg Platter',1229)">Add to Cart</button>
+<button class="order" onclick="orderNow('Non Veg Platter',1229)">Order</button>
+</div>
+</div>
+</div>
+
+</div>
+
+<script>
+    const CART_KEY = "cart";
+
+    function getCart() {
+    return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+    }
+
+    function saveCart(cart) {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    }
+
+    function updateCartCount() {
+    let cart = getCart();
+    let badge = document.getElementById("cart-count");
+    if (!badge) return;
+
+    if (cart.length > 0) {
+        badge.innerText = cart.length;
+        badge.style.display = "inline-block";
+    } else {
+        badge.innerText = "";
+        badge.style.display = "none";
+    }
+    }
+
+    function addToCart(name, price) {
+    let cart = getCart();
+    cart.push({ name, price });
+    saveCart(cart);
+    updateCartCount();
+    alert(name + " Added to Cart");
+    }
+
+    function goToCart() {
+    window.location.href = "cart.html";
+    }
+
+    function orderNow(name, price) {
+    let msg = `Hello AL SIMRAN Restaurant,%0AOrder:%0A${name} - ₹${price}`;
+    window.open("https://wa.me/917294035376?text=" + msg, "_blank");
+    }
+
+    updateCartCount();
+</script>
+
+</body>
+</html>

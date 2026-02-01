@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cart | AL SIMRAN</title>
+
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  font-family: Arial, sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  overflow:hidden;
+}
+
+/* BACKGROUND SLIDESHOW */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  transition:background-image 1s ease-in-out;
+  z-index:-1;
+}
+
+/* DARK OVERLAY */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  z-index:-1;
+}
+
+.cart-box{
+  width:380px;
+  padding:20px;
+  border-radius:18px;
+  background:rgba(0,0,0,0.45);
+  backdrop-filter: blur(12px);
+}
+
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.qty button{
+  padding:4px 10px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.total{
+  margin-top:15px;
+  font-size:18px;
+  color:#f1c40f;
+  text-align:right;
+}
+
+.checkout{
+  width:100%;
+  margin-top:15px;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#2ecc71;
+  font-weight:bold;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="cart-box">
+  <h2>🛒 Your Cart</h2>
+  <div id="cartItems"></div>
+  <div class="total" id="total"></div>
+  <button class="checkout" onclick="goCheckout()">Checkout</button>
+</div>
+
+<script>
+/* 🔥 BACKGROUND IMAGES (REPLACE LINKS) */
+const bgImages = [
+  "https://i.pinimg.com/736x/02/3c/97/023c978529252da956e4ef3412735956.jpg",
+  "https://i.pinimg.com/736x/d5/2f/e9/d52fe9b7c0247e02a85c78c8c6d02209.jpg",
+  "https://i.pinimg.com/736x/51/3a/58/513a580ea4d8664fd687d5d801fc5b76.jpg",
+  "https://i.pinimg.com/736x/fc/0a/24/fc0a24dba1f9a43d93768ad30e4608e7.jpg",
+  "https://i.pinimg.com/736x/db/8f/2d/db8f2dbdc80f27cb4a8cb06755c9d738.jpg",
+  "https://i.pinimg.com/736x/bd/5f/95/bd5f95daf0b0c44fcd8b84f5af543b43.jpg"
+];
+
+let bgIndex = 0;
+function slideBg(){
+  document.body.style.setProperty(
+    "--bg",
+    `url('${bgImages[bgIndex]}')`
+  );
+  document.body.style.backgroundImage = `url('${bgImages[bgIndex]}')`;
+  bgIndex = (bgIndex + 1) % bgImages.length;
+}
+slideBg();
+setInterval(slideBg, 2000);
+
+/* CART LOGIC */
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function render(){
+  let h="",t=0;
+
+  cart.forEach((i,x)=>{
+    let qty = i.qty || 1;
+    t += i.price * qty;
+
+    h += `
+    <div class="cart-item">
+      <span>${i.name}</span>
+      <div class="qty">
+        <button onclick="dec(${x})">-</button>
+        ${qty}
+        <button onclick="inc(${x})">+</button>
+      </div>
+    </div>`;
+  });
+
+  document.getElementById("cartItems").innerHTML = h || "Cart Empty";
+  document.getElementById("total").innerText = "Total: ₹" + t;
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function inc(i){
+  if(!cart[i].qty) cart[i].qty = 1;
+  cart[i].qty++;
+  render();
+}
+
+function dec(i){
+  if(!cart[i].qty) cart[i].qty = 1;
+  cart[i].qty--;
+  if(cart[i].qty <= 0) cart.splice(i,1);
+  render();
+}
+
+function goCheckout(){
+  if(cart.length===0){
+    alert("Cart empty");
+    return;
+  }
+  location.href="checkout.html";
+}
+
+render();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fish Menu | AL SIMRAN</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    color:#fff;
+
+    background-image: url("https://i.pinimg.com/1200x/4c/fb/f3/4cfbf3e17d7b2fbe2b2cf885f3fcf0fd.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h1{
+    text-align:center;
+    padding:20px;
+    color:#ffcc00;
+}
+
+/* MENU GRID */
+.menu{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:20px;
+    background: transparent;
+}
+
+/* CARD */
+.card{
+    background: rgba(0,0,0,0.35); /* transparent glass effect */
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.4);
+    backdrop-filter: blur(5px);
+}
+
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+
+/* INFO */
+.info{
+    padding:15px;
+    background:linear-gradient(to top,rgba(0,0,0,.8),rgba(0,0,0,.2));
+}
+
+.info h3{
+    margin:0;
+    font-size:18px;
+}
+
+.price{
+    color:#ffcc00;
+    margin:6px 0;
+    font-weight:bold;
+}
+
+/* BUTTONS */
+.buttons{
+    display:flex;
+    gap:10px;
+    margin-top:8px;
+}
+
+button{
+    flex:1;
+    padding:8px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.add{
+    background:#ff9800;
+    color:#fff;
+}
+
+.order{
+    background:#25D366;
+    color:#fff;
+}
+
+/* CART */
+.cart{
+    background: rgba(0,0,0,0.5);
+    padding:20px;
+    backdrop-filter: blur(6px);
+}
+
+.cart h2{
+    margin-top:0;
+    color:#ffcc00;
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+}
+
+.cart button{
+    width:100%;
+    margin-top:10px;
+    background:#25D366;
+}
+.glass-title{
+    display:inline-block;
+    padding:12px 30px;
+    margin:20px auto;
+    border-radius:15px;
+
+    /* GLASS EFFECT */
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    /* GLASS BORDER */
+    border:1px solid rgba(255,255,255,0.35);
+
+    color:#ffcc00;
+    box-shadow:0 8px 25px rgba(0,0,0,0.3);
+}
+.cart-icon{
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 50px;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+#cart-count{
+  background: red;
+  color: white;
+  font-size: 14px;
+  padding: 2px 7px;
+  border-radius: 50%;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+</style>
+</head>
+
+<body>
+<!-- CART ICON -->
+<div class="cart-icon" onclick="goToCart()">
+  🛒
+  <span id="cart-count">0</span>
+</div>
+
+<h1 class="glass-title">🐟 Fish Menu</h1>
+
+<div class="menu">
+
+<!-- 1 -->
+<div class="card">
+<img src="https://img.freepik.com/free-photo/grilled-salmon-fillet-with-fresh-vegetable-salad-generated-by-ai_188544-24687.jpg?t=st=1769847579~exp=1769851179~hmac=4d9d42e4f90dd1a34a2c1c193f0b9748c6191140b33ed39265e823db90ae42df">
+<div class="info">
+<h3>Fish Fry</h3>
+<div class="price">₹200</div>
+<div class="buttons">
+<button class="add" onclick="addToCart('Fish Fry',200)">Add to Cart</button>
+<button class="order" onclick="orderNow('Fish Fry',200)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 2 -->
+<div class="card">
+<img src="https://img.freepik.com/free-photo/top-view-delicious-fish-meal_23-2148734691.jpg?t=st=1769847929~exp=1769851529~hmac=2cbfffd7628a5a5534b48fabedf8b7f6f1f2132e359ca2c6ddc954820bf33d9d">
+<div class="info">
+<h3>Fish Curry</h3>
+<div class="price">₹220</div>
+<div class="buttons">
+<button class="add" onclick="addToCart('Fish Curry',220)">Add to Cart</button>
+<button class="order" onclick="orderNow('Fish Curry',220)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 3 -->
+<div class="card">
+<img src="https://img.freepik.com/free-photo/wooden-board-with-fish-grills-herbs-it_114579-2211.jpg?t=st=1769848016~exp=1769851616~hmac=937fae17fbf8bf48a4af0d82cc9e335b973682c4d20f52c63234a11672ca1a4c">
+<div class="info">
+<h3>Grilled Fish</h3>
+<div class="price">₹250</div>
+<div class="buttons">
+<button class="add" onclick="addToCart('Grilled Fish',250)">Add to Cart</button>
+<button class="order" onclick="orderNow('Grilled Fish',250)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 4 -->
+<div class="card">
+<img src="https://img.freepik.com/free-photo/gourmet-biryani-with-saffron-rice-chicken-generated-by-ai_188544-39093.jpg?t=st=1769848338~exp=1769851938~hmac=95cedf7e4f71cea9aee8c3c9411b8fdad887b6513f405397f2f94b00ad32d381">
+<div class="info">
+<h3>Fish Biryani</h3>
+<div class="price">₹230</div>
+<div class="buttons">
+<button class="add" onclick="addToCart('Fish Biryani',230)">Add to Cart</button>
+<button class="order" onclick="orderNow('Fish Biryani',230)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 5 -->
+<div class="card">
+<img src="https://img.freepik.com/free-photo/grilled-salmon-served-lavash-bread-with-lemon-slices_114579-2947.jpg?t=st=1769848442~exp=1769852042~hmac=f94af9f39e981560907015e27b426b2364452734f406fb9de26b609a2ff37177">
+<div class="info">
+<h3>Fish Tikka</h3>
+<div class="price">₹260</div>
+<div class="buttons">
+<button class="add" onclick="addToCart('Fish Tikka',260)">Add to Cart</button>
+<button class="order" onclick="orderNow('Fish Tikka',260)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 6 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b">
+<div class="info">
+<h3>Tandoori Fish</h3>
+<div class="price">₹280</div>
+<div class="buttons">
+<button class="add" onclick="addToCart('Tandoori Fish',280)">Add to Cart</button>
+<button class="order" onclick="orderNow('Tandoori Fish',280)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 7 -->
+<div class="card">
+<img src="https://img.freepik.com/free-photo/delicious-lobster-gourmet-seafood_23-2151713020.jpg?t=st=1769848525~exp=1769852125~hmac=f740dfa58e0199061a1bf93ddf8e03d0554425d7a11a06711afa017f501b55e6">
+<div class="info">
+<h3>Fish Kebab</h3>
+<div class="price">₹240</div>
+<div class="buttons">
+<button class="add" onclick="addToCart('Fish Kebab',240)">Add to Cart</button>
+<button class="order" onclick="orderNow('Fish Kebab',240)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 8 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1628294895950-9805252327bc?w=800">
+<div class="info">
+<h3>Chilli Fish</h3>
+<div class="price">₹230</div>
+<div class="buttons">
+<button class="add" onclick="addToCart('Chilli Fish',230)">Add to Cart</button>
+<button class="order" onclick="orderNow('Chilli Fish',230)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 9 -->
+<div class="card">
+<img src="https://img.freepik.com/free-photo/fried-salmon-with-side-onion-sauce_140725-1771.jpg?t=st=1769848610~exp=1769852210~hmac=6046a2cda70d10feca9a37ffdc4bed11b27c29177644f0fd8cc5b038b0a088fa">
+<div class="info">
+<h3>Pepper Fish Fry</h3>
+<div class="price">₹250</div>
+<div class="buttons">
+<button class="add" onclick="addToCart('Pepper Fish Fry',250)">Add to Cart</button>
+<button class="order" onclick="orderNow('Pepper Fish Fry',250)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 10 -->
+<div class="card">
+<img src="https://img.freepik.com/free-photo/baked-fish-with-lemon-side-view_140725-11200.jpg?t=st=1769848754~exp=1769852354~hmac=e2dc0a20b6a271faa7e1d6e9c2bf4a4798fdeafc123c21502954619e90a2d791">
+<div class="info">
+<h3>Fish Masala</h3>
+<div class="price">₹240</div>
+<div class="buttons">
+<button class="add" onclick="addToCart('Fish Masala',240)">Add to Cart</button>
+<button class="order" onclick="orderNow('Fish Masala',240)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 11 -->
+<div class="card">
+<img src="https://img.freepik.com/free-photo/close-up-delicious-asian-food_23-2150535862.jpg?t=st=1769848863~exp=1769852463~hmac=ec962bfb438ac459a47af7fad0b04f928aa5e8f6ea152d062d82dfdca6aa0771">
+<div class="info">
+<h3>Fish Manchurian</h3>
+<div class="price">₹230</div>
+<div class="buttons">
+<button class="add" onclick="addToCart('Fish Manchurian',230)">Add to Cart</button>
+<button class="order" onclick="orderNow('Fish Manchurian',230)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 12 -->
+<div class="card">
+<img src="https://img.freepik.com/free-photo/high-angle-delicious-mahi-mahi-fish-with-lemon_23-2150457346.jpg?t=st=1769849022~exp=1769852622~hmac=89c7d7efb681183591d8b2cb20b27de7da0bb7a9b175b08a06b140e9ba49e275">
+<div class="info">
+<h3>Butter Garlic Fish</h3>
+<div class="price">₹270</div>
+<div class="buttons">
+<button class="add" onclick="addToCart('Butter Garlic Fish',270)">Add to Cart</button>
+<button class="order" onclick="orderNow('Butter Garlic Fish',270)">Order</button>
+</div>
+</div>
+</div>
+
+<!-- 13 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800">
+<div class="info">
+<h3>Fish 65</h3>
+<div class="price">₹220</div>
+<div class="buttons">
+<button class="add" onclick="addToCart('Fish 65',220)">Add to Cart</button>
+<button class="order" onclick="orderNow('Fish 65',220)">Order</button>
+</div>
+</div>
+</div>
+
+</div>
+
+<script>
+    const CART_KEY = "cart";
+
+    function getCart() {
+    return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+    }
+
+    function saveCart(cart) {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    }
+
+    function updateCartCount() {
+    let cart = getCart();
+    let badge = document.getElementById("cart-count");
+    if (!badge) return;
+
+    if (cart.length > 0) {
+        badge.innerText = cart.length;
+        badge.style.display = "inline-block";
+    } else {
+        badge.innerText = "";
+        badge.style.display = "none";
+    }
+    }
+
+    function addToCart(name, price) {
+    let cart = getCart();
+    cart.push({ name, price });
+    saveCart(cart);
+    updateCartCount();
+    alert(name + " Added to Cart");
+    }
+
+    function goToCart() {
+    window.location.href = "cart.html";
+    }
+
+    function orderNow(name, price) {
+    let msg = `Hello AL SIMRAN Restaurant,%0AOrder:%0A${name} - ₹${price}`;
+    window.open("https://wa.me/917294035376?text=" + msg, "_blank");
+    }
+
+    updateCartCount();
+</script>
+
+</body>
+</html>
