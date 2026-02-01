@@ -133,6 +133,27 @@
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 15px 30px rgba(0,0,0,0.4);
 }
+.menu-link{
+  text-decoration: none;
+  color: inherit;
+}
+.cart-link{
+  position: relative;
+  color:#f1c40f;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+#cart-count{
+  position:absolute;
+  top:-8px;
+  right:-12px;
+  background:red;
+  color:white;
+  font-size:12px;
+  padding:2px 6px;
+  border-radius:50%;
+}
 </style>
 
 </head>
@@ -187,6 +208,10 @@
         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
       </ul>
     </div>
+      <a href="cart.html" class="cart-link">
+        🛒 Cart
+        <span id="cart-count">0</span>
+      </a>
   </div>
 </nav>
 
@@ -218,98 +243,35 @@
 
     <div class="row g-4">
 
-      <!-- Veg -->
+     <!-- Veg -->
       <div class="col-md-4">
-        <div class="menu-card" style="background:url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe') center/cover;"
+        <a href="veg.html" style="text-decoration:none;">
+          <div class="menu-card"
+              style="background:url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe') center/cover;"
              onclick="toggleMenu('veg')">
-          <h3>Veg Menu</h3>
-        </div>
-        <div id="veg" class="mt-2 d-none">
-          <ul class="list-group">
-            <li class="list-group-item">Paneer Butter Masala – ₹180</li>
-            <li class="list-group-item">Veg Biryani – ₹150</li>
-            <li class="list-group-item">Mix Veg – ₹120</li>
-            <li class="list-group-item">Dal Fry – ₹100</li>
-            <li class="list-group-item">Roti / Naan – ₹20</li>
-            <li class="list-group-item">Paneer Tikka – ₹290</li>
-            <li class="list-group-item">Paneer Chatpata Kebab – ₹290</li>
-            <li class="list-group-item">Paneer Angara Kebab – ₹320</li>
-            <li class="list-group-item">Paneer Schezwan Cheese Tikka – ₹320</li>
-            <li class="list-group-item">Paneer Rozali Kebab – ₹320</li>
-            <li class="list-group-item">Paneer Cheese Dhaniya Tikka – ₹320</li>
-            <li class="list-group-item">Paneer Amritsari Kebab – ₹320</li>
-            <li class="list-group-item">Paneer Sajoi Kebab – ₹320</li>
-            <li class="list-group-item">Paneer Hilton Kebab – ₹320</li>
-            <li class="list-group-item">Tandoori Mushroom – ₹320</li>
-            <li class="list-group-item">Mushroom Multani Tikka – ₹320</li>
-            <li class="list-group-item">Tandoor Soya Chaap – ₹320</li>
-            <li class="list-group-item">Banjara Soya Chaap – ₹320</li>
-            <li class="list-group-item">Malai Soya Chaap – ₹320</li>
-            <li class="list-group-item">Veg Platter – ₹829</li>
-          </ul>
-        </div>
+            <h3>Veg Menu</h3>
+          </div>
+        </a>
       </div>
 
       <!-- Non Veg -->
       <div class="col-md-4">
-        <div class="menu-card" style="background:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') center/cover;"
+        <a href="nonveg.html" style="text-decoration:none;">
+          <div class="menu-card" style="background:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') center/cover;"
              onclick="toggleMenu('nonveg')">
-          <h3>Non-Veg Menu</h3>
-        </div>
-        <div id="nonveg" class="mt-2 d-none">
-          <ul class="list-group">
-            <li class="list-group-item">Chicken Biryani – ₹220</li>
-            <li class="list-group-item">Mutton Biryani – ₹280</li>
-            <li class="list-group-item">Chicken Curry – ₹200</li>
-            <li class="list-group-item">Tandoori Chicken – ₹260</li>
-            <li class="list-group-item">Egg Curry – ₹120</li>
-            <li class="list-group-item">Chicken Raan – ₹850</li>
-            <li class="list-group-item">Damkash Tangdi – ₹380</li>
-            <li class="list-group-item">Tandoor Chicken (Full/Half) – ₹429 / ₹299</li>
-            <li class="list-group-item">Shahi Tandoor Chicken (Full/Half) – ₹479 / ₹329</li>
-            <li class="list-group-item">Chicken Rozali Kebab – ₹379</li>
-            <li class="list-group-item">Chicken Dilkhush Kebab – ₹379</li>
-            <li class="list-group-item">Chicken Tangdi Kebab – ₹349</li>
-            <li class="list-group-item">Chicken Singapori Kebab – ₹379</li>
-            <li class="list-group-item">Chicken Angara Kebab – ₹329</li>
-            <li class="list-group-item">Chicken Banjara Kebab – ₹329</li>
-            <li class="list-group-item">Chicken Mastani Kebab – ₹349</li>
-            <li class="list-group-item">Chicken Kalimiri Kebab – ₹329</li>
-            <li class="list-group-item">Chicken Irani Kebab – ₹379</li>
-            <li class="list-group-item">Chicken Malai Kebab – ₹329</li>
-            <li class="list-group-item">Chicken Reshmi Kebab – ₹329</li>
-            <li class="list-group-item">Tandoor Chicken Lollypop – ₹329</li>
-            <li class="list-group-item">Mutton Seekh Kebab – ₹379</li>
-            <li class="list-group-item">Mutton Gilafi Seekh Kebab – ₹399</li>
-            <li class="list-group-item">Non-Veg Platter – ₹1229</li>
-          </ul>
-        </div>
+            <h3>Non-Veg Menu</h3>
+          </div>
+        </a>
       </div>
 
       <!-- Fish -->
       <div class="col-md-4">
-        <div class="menu-card" style="background:url('https://images.unsplash.com/photo-1553621042-f6e147245754') center/cover;"
-             onclick="toggleMenu('fish')">
-          <h3>Fish Menu</h3>
-        </div>
-        <div id="fish" class="mt-2 d-none">
-          <ul class="list-group">
-            <li class="list-group-item">Fish Fry – ₹200</li>
-            <li class="list-group-item">Fish Curry – ₹220</li>
-            <li class="list-group-item">Grilled Fish – ₹250</li>
-            <li class="list-group-item">Fish Biryani – ₹230</li>
-            <li class="list-group-item">Fish Tikka – ₹260</li>
-            <li class="list-group-item">Tandoori Fish – ₹280</li>
-            <li class="list-group-item">Fish Kebab – ₹240</li>
-            <li class="list-group-item">Chilli Fish – ₹230</li>
-            <li class="list-group-item">Pepper Fish Fry – ₹250</li>
-            <li class="list-group-item">Fish Masala – ₹240</li>
-            <li class="list-group-item">Fish Manchurian – ₹230</li>
-            <li class="list-group-item">Butter Garlic Fish – ₹270</li>
-            <li class="list-group-item">Fish 65 – ₹220</li>
-            <li class="list-group-item">Fish Platter – ₹480</li>
-          </ul>
-        </div>
+        <a href="fish.html" class="menu-link">
+          <div class="menu-card"
+              style="background:url('https://images.unsplash.com/photo-1553621042-f6e147245754') center/cover;">
+            <h3>Fish Menu</h3>
+          </div>
+        </a>
       </div>
 
     </div>
@@ -438,12 +400,26 @@
     index = (index + 1) % slides.length;
     slides[index].classList.add('active');
   }, 3000); // 3 seconds
-</script>
-<script>
+  
   function toggleMenu(id){
     let el = document.getElementById(id);
     el.classList.toggle('d-none');
   }
+
+  function updateCartCount(){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let badge = document.getElementById("cart-count");
+
+  if(cart.length > 0){
+    badge.innerText = cart.length;
+    badge.style.display = "inline-block";
+  }else{
+    badge.innerText = "";
+    badge.style.display = "none";
+  }
+  }
+  localStorage.removeItem("cart");
+  updateCartCount();
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
